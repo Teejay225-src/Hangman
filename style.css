@@ -16,7 +16,47 @@ h1 {
     position: relative;
 }
 
-/* Hangman structure */
+/* Hangman word display */
+.word {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin: 20px;
+}
+
+.letter {
+    margin: 0 5px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+.score {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.answer {
+    margin-top: 15px;
+}
+
+.answer input {
+    padding: 10px;
+    font-size: 16px;
+    width: 50px;
+    text-align: center;
+}
+
+.answer button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hangman post and platform */
 .platform {
     position: relative;
     width: 100px;
@@ -24,7 +64,6 @@ h1 {
     margin: auto;
 }
 
-/* The post */
 .base {
     width: 100px;
     height: 10px;
@@ -61,7 +100,6 @@ h1 {
     left: 95px;
 }
 
-/* Hangman's rope */
 .rope {
     width: 3px;
     height: 20px;
@@ -71,7 +109,7 @@ h1 {
     left: 97px;
 }
 
-/* Hangman body */
+/* Hangman body parts */
 .head, .torso, .arm, .foot {
     display: none;
     position: absolute;
@@ -97,43 +135,43 @@ h1 {
     left: 97px;
 }
 
-/* Arms (angled downward slightly) */
+/* Arms rotated downward */
 .arm-1, .arm-2 {
     width: 30px;
     height: 5px;
-    position: absolute;
     background: black;
+    position: absolute;
 }
 
 .arm-1 {
     top: 95px;
     left: 72px;
-    transform: rotate(120deg);
+    transform: rotate(160deg);
 }
 
 .arm-2 {
     top: 95px;
     left: 100px;
-    transform: rotate(-120deg);
+    transform: rotate(-160deg);
 }
 
-/* Legs (angled downward naturally) */
+/* Legs rotated downward */
 .foot-1, .foot-2 {
     width: 30px;
     height: 5px;
-    position: absolute;
     background: black;
+    position: absolute;
 }
 
 .foot-1 {
     top: 130px;
     left: 72px;
-    transform: rotate(120deg);
+    transform: rotate(160deg);
 }
 
 .foot-2 {
     top: 130px;
     left: 100px;
-    transform: rotate(-120deg);
+    transform: rotate(-160deg);
 }
 
