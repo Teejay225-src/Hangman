@@ -12,10 +12,11 @@ h1 {
 .illustration {
     margin: 20px auto;
     width: 200px;
-    height: 200px;
+    height: 250px;
     position: relative;
 }
 
+/* Hangman word display */
 .word {
     display: flex;
     justify-content: center;
@@ -62,50 +63,59 @@ h1 {
     position: absolute;
 }
 
-/* Hangman body part positions */
+/* Hangman body structure */
 .head {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     top: 20px;
     left: 85px;
+    border: 3px solid black;
+    background: none;
 }
 
 .torso {
-    width: 10px;
+    width: 5px;
     height: 50px;
     top: 50px;
-    left: 95px;
+    left: 97px;
+    background: black;
+}
+
+/* Arms hanging straight down */
+.arm-1, .arm-2 {
+    width: 5px;
+    height: 40px;
+    background: black;
+    position: absolute;
 }
 
 .arm-1 {
-    width: 40px;
-    height: 5px;
-    top: 60px;
-    left: 70px;
-    transform: rotate(30deg);
+    top: 50px;
+    left: 82px;
 }
 
 .arm-2 {
-    width: 40px;
-    height: 5px;
-    top: 60px;
-    left: 95px;
-    transform: rotate(-30deg);
+    top: 50px;
+    left: 110px;
+}
+
+/* Legs hanging straight down */
+.foot-1, .foot-2 {
+    width: 5px;
+    height: 40px;
+    background: black;
+    position: absolute;
 }
 
 .foot-1 {
-    width: 40px;
-    height: 5px;
     top: 100px;
-    left: 70px;
-    transform: rotate(30deg);
+    left: 90px;
 }
 
 .foot-2 {
-    width: 40px;
-    height: 5px;
     top: 100px;
-    left: 95px;
-    transform: rotate(-30deg);
+    left: 105px;
 }
+
+
