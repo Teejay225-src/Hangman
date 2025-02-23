@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body onload="setupGame()">
+    <h1>Hangman</h1>
+
+    <div class="illustration">
+        <div class="stick">
+            <div class="platform">
+                <div class="base"></div>
+                <div class="pole"></div>
+                <div class="overhang"></div>
+                <div class="extension"></div>
+            </div>
+            <div class="person">
+                <div id="head" class="head"></div>
+                <div id="arm-1" class="arm-1 arm"></div>
+                <div id="arm-2" class="arm-2 arm"></div>
+                <div id="torso" class="torso"></div>
+                <div id="foot-1" class="foot-1 foot"></div>
+                <div id="foot-2" class="foot-2 foot"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="word">
+        <div class="letter" id="s-0">_</div>
+        <div class="letter" id="s-1">_</div>
+        <div class="letter" id="s-2">_</div>
+        <div class="letter" id="s-3">_</div>
+        <div class="letter" id="s-4">_</div>
+    </div>
+    <div class="score">
+        <div>Lives: </div>
+        <div id="lives"></div>
+    </div>
+
+    <div class="answer">
+        <button onclick="checkLetter()">Enter a letter</button>
+    </div>
+</body>
+</html>
