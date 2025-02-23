@@ -8,22 +8,20 @@ let words = [
     "twing", "unzip", "vodka", "whelp", "zesty"
 ];
 
-let word = words[Math.floor(Math.random() * words.length)];
-let guessedWord = Array(word.length).fill("_");
-let lives = 6;
-let guessedLetters = new Set();
-
-document.addEventListener("DOMContentLoaded", setupGame);
+let word, guessedWord, lives, guessedLetters;
 
 function setupGame() {
-    document.getElementById("lives").innerText = lives;
-    let wordDisplay = document.getElementById("word-display");
-    wordDisplay.innerHTML = guessedWord.map(letter => `<span class="letter">${letter}</span>`).join("");
+    word = words[Math.floor(Math.random() * words.length)];
+    guessedWord = Array(word.length).fill("_");
+    lives = 6;
+    guessedLetters = new Set();
 
-    // Hide all body parts at the start
+    document.getElementById("lives").innerText = lives;
+    updateWordDisplay();
+
     let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
     bodyParts.forEach(part => {
-        document.getElementById(part).style.display = "none";
+        document.getElementById(part).style.display = "none"; // Hide all parts at start
     });
 }
 
@@ -62,10 +60,10 @@ function checkLetter() {
 
 function showNextBodyPart() {
     let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
-    let partsToShow = 6 - lives;  // Number of parts to show based on lost lives
+    let index = 6 - lives - 1; // Properly map lives to body parts
 
-    if (partsToShow > 0 && partsToShow <= bodyParts.length) {
-        document.getElementById(bodyParts[partsToShow - 1]).style.display = "block";
+    if (index >= 0 && index < bodyParts.length) {
+        document.getElementById(bodyParts[index]).style.display = "block";
     }
 }
 
@@ -84,11 +82,7 @@ function checkGameOver() {
 }
 
 function resetGame() {
-    word = words[Math.floor(Math.random() * words.length)];
-    guessedWord = Array(word.length).fill("_");
-    lives = 6;
-    guessedLetters.clear();
-    document.getElementById("lives").innerText = lives;
-    updateWordDisplay();
-    setupGame(); // Re-hide body parts
+    setupGame();
 }
+
+document.addEventListener("DOMContentLoaded", setupGame);
