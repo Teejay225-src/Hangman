@@ -108,13 +108,13 @@ h1 {
 .arm-1 {
     top: 95px;
     left: 72px;
-    transform: rotate(20deg);
+    transform: rotate(120deg);
 }
 
 .arm-2 {
     top: 95px;
     left: 100px;
-    transform: rotate(-20deg);
+    transform: rotate(-120deg);
 }
 
 /* Legs (angled downward naturally) */
@@ -128,12 +128,12 @@ h1 {
 .foot-1 {
     top: 130px;
     left: 72px;
-    transform: rotate(240deg);
+    transform: rotate(120deg);
 }
 
 .foot-2 {
     top: 130px;
     left: 100px;
-    transform: rotate(-240deg);
+    transform: rotate(-120deg);
 }
 
