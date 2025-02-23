@@ -27,6 +27,10 @@ h1 {
     margin: 0 5px;
     font-size: 30px;
     font-weight: bold;
+    border-bottom: 2px solid black;
+    width: 30px;
+    display: inline-block;
+    text-align: center;
 }
 
 .score {
@@ -34,8 +38,74 @@ h1 {
     margin: 10px;
 }
 
+.answer {
+    margin-top: 15px;
+}
+
+.answer input {
+    padding: 10px;
+    font-size: 16px;
+    width: 50px;
+    text-align: center;
+}
+
 .answer button {
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
+}
+
+/* Hide hangman body parts initially */
+.head, .torso, .arm, .foot {
+    display: none;
+    background-color: black;
+    position: absolute;
+}
+
+/* Hangman body part positions */
+.head {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 20px;
+    left: 85px;
+}
+
+.torso {
+    width: 10px;
+    height: 50px;
+    top: 50px;
+    left: 95px;
+}
+
+.arm-1 {
+    width: 40px;
+    height: 5px;
+    top: 60px;
+    left: 70px;
+    transform: rotate(30deg);
+}
+
+.arm-2 {
+    width: 40px;
+    height: 5px;
+    top: 60px;
+    left: 95px;
+    transform: rotate(-30deg);
+}
+
+.foot-1 {
+    width: 40px;
+    height: 5px;
+    top: 100px;
+    left: 70px;
+    transform: rotate(30deg);
+}
+
+.foot-2 {
+    width: 40px;
+    height: 5px;
+    top: 100px;
+    left: 95px;
+    transform: rotate(-30deg);
 }
