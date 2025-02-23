@@ -128,12 +128,12 @@ h1 {
 .foot-1 {
     top: 130px;
     left: 72px;
-    transform: rotate(20deg);
+    transform: rotate(240deg);
 }
 
 .foot-2 {
     top: 130px;
     left: 100px;
-    transform: rotate(-20deg);
+    transform: rotate(-240deg);
 }
 
