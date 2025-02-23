@@ -16,106 +16,124 @@ h1 {
     position: relative;
 }
 
-/* Hangman word display */
-.word {
-    display: flex;
-    justify-content: center;
-    font-size: 24px;
-    margin: 20px;
+/* Hangman structure */
+.platform {
+    position: relative;
+    width: 100px;
+    height: 180px;
+    margin: auto;
 }
 
-.letter {
-    margin: 0 5px;
-    font-size: 30px;
-    font-weight: bold;
-    border-bottom: 2px solid black;
-    width: 30px;
-    display: inline-block;
-    text-align: center;
+/* The post */
+.base {
+    width: 100px;
+    height: 10px;
+    background: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
-.score {
-    font-size: 20px;
-    margin: 10px;
+.pole {
+    width: 10px;
+    height: 150px;
+    background: black;
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
 }
 
-.answer {
-    margin-top: 15px;
+.overhang {
+    width: 70px;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 30px;
 }
 
-.answer input {
-    padding: 10px;
-    font-size: 16px;
-    width: 50px;
-    text-align: center;
+.extension {
+    width: 5px;
+    height: 30px;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 95px;
 }
 
-.answer button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
+/* Hangman's rope */
+.rope {
+    width: 3px;
+    height: 20px;
+    background: black;
+    position: absolute;
+    top: 30px;
+    left: 97px;
 }
 
-/* Hide hangman body parts initially */
+/* Hangman body */
 .head, .torso, .arm, .foot {
     display: none;
-    background-color: black;
     position: absolute;
+    background-color: black;
 }
 
-/* Hangman body structure */
+/* Head */
 .head {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    top: 20px;
-    left: 85px;
     border: 3px solid black;
     background: none;
+    top: 50px;
+    left: 83px;
 }
 
+/* Torso */
 .torso {
     width: 5px;
     height: 50px;
-    top: 50px;
+    top: 80px;
     left: 97px;
-    background: black;
 }
 
-/* Arms hanging straight down */
+/* Arms (angled downward slightly) */
 .arm-1, .arm-2 {
-    width: 5px;
-    height: 40px;
-    background: black;
+    width: 30px;
+    height: 5px;
     position: absolute;
+    background: black;
 }
 
 .arm-1 {
-    top: 50px;
-    left: 82px;
+    top: 95px;
+    left: 72px;
+    transform: rotate(20deg);
 }
 
 .arm-2 {
-    top: 50px;
-    left: 110px;
+    top: 95px;
+    left: 100px;
+    transform: rotate(-20deg);
 }
 
-/* Legs hanging straight down */
+/* Legs (angled downward naturally) */
 .foot-1, .foot-2 {
-    width: 5px;
-    height: 40px;
-    background: black;
+    width: 30px;
+    height: 5px;
     position: absolute;
+    background: black;
 }
 
 .foot-1 {
-    top: 100px;
-    left: 90px;
+    top: 130px;
+    left: 72px;
+    transform: rotate(20deg);
 }
 
 .foot-2 {
-    top: 100px;
-    left: 105px;
+    top: 130px;
+    left: 100px;
+    transform: rotate(-20deg);
 }
-
 
