@@ -1,9 +1,9 @@
 let words = [
     "charm", "brick", "frost", "plane", "shock", "quest", "drink", 
     "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove", 
-    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "jolly", 
+    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved", 
     "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", 
-    "flock", "mirth", "vapor", "wight", "xenon", "yield", "zebra", 
+    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra", 
     "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs", 
     "twing", "unzip", "vodka", "whelp", "zesty"
 ];
@@ -21,7 +21,7 @@ function setupGame() {
 
     let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
     bodyParts.forEach(part => {
-        document.getElementById(part).style.display = "none"; // Hide all parts at start
+        document.getElementById(part).style.display = "none";  
     });
 }
 
@@ -60,8 +60,7 @@ function checkLetter() {
 
 function showNextBodyPart() {
     let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
-    let index = 6 - lives - 1; // Properly map lives to body parts
-
+    let index = 6 - lives - 1;  
     if (index >= 0 && index < bodyParts.length) {
         document.getElementById(bodyParts[index]).style.display = "block";
     }
