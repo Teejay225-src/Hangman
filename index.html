@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    
 </head>
-    
 <body onload="setupGame()">
-    
     <h1>Hangman</h1>
 
     <div class="illustration">
-        <div class="platform">
-            <div class="base"></div>
-            <div class="pole"></div>
-            <div class="overhang"></div>
-            <div class="extension"></div>
-            <div class="rope"></div>
+        <div class="stick">
+            <div class="platform">
+                <div class="base"></div>
+                <div class="pole"></div>
+                <div class="overhang"></div>
+                <div class="extension"></div>
+            </div>
             <div class="person">
-                
                 <div id="head" class="head"></div>
                 <div id="torso" class="torso"></div>
                 <div id="arm-1" class="arm-1 arm"></div>
@@ -35,23 +30,16 @@
     </div>
 
     <div class="word" id="word-display">
-        
         <!-- Letters will be dynamically inserted here -->
     </div>
 
     <div class="score">
-        
         <div>Lives: <span id="lives"></span></div>
-        
     </div>
 
     <div class="answer">
-        
         <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter">
-        <button onclick="checkLetter()">Submit</button>
-        
+        <button id="submit-button" onclick="checkLetter()">Submit</button>
     </div>
-    
 </body>
-    
-</html>
+</html>  
