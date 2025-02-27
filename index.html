@@ -21,10 +21,10 @@
             <div class="person">
                 <div id="head" class="head"></div>
                 <div id="torso" class="torso"></div>
-                <div id="arm-1" class="arm-1 arm"></div>
-                <div id="arm-2" class="arm-2 arm"></div>
-                <div id="foot-1" class="foot-1 foot"></div>
-                <div id="foot-2" class="foot-2 foot"></div>
+                <div id="arm-1" class="arm"></div>
+                <div id="arm-2" class="arm"></div>
+                <div id="foot-1" class="foot"></div>
+                <div id="foot-2" class="foot"></div>
             </div>
         </div>
     </div>
@@ -38,8 +38,8 @@
     </div>
 
     <div class="answer">
-        <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter">
-        <button id="submit-button" onclick="checkLetter()">Submit</button>
+        <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter" oninput="validateInput()">
+        <button onclick="checkLetter()">Submit</button>
     </div>
 </body>
 </html>
