@@ -1,4 +1,4 @@
- div, h1, span, p {
+div, h1, span, p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -133,5 +133,8 @@ button {
 
 .head, .arm, .torso, .foot {
     display: none;
-}   
-       
+} 
+ 
+  
+
+ 
