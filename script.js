@@ -23,6 +23,9 @@ function setupGame() {
     bodyParts.forEach(part => {
         document.getElementById(part).style.display = "none";  
     });
+
+    // Re-enable the button for the new game
+    document.getElementById("submit-button").disabled = false;
 }
 
 function updateWordDisplay() {
@@ -83,7 +86,6 @@ function checkGameOver() {
 
 function resetGame() {
     setupGame();
-    document.getElementById("submit-button").disabled = false; // Re-enable button for new game
 }
 
 // Enable the button only if a valid letter is entered
@@ -91,3 +93,5 @@ document.getElementById("letter-input").addEventListener("input", function() {
     let letter = this.value.toLowerCase();
     document.getElementById("submit-button").disabled = !(letter.length === 1 && /[a-z]/.test(letter));
 });
+ 
+ 
