@@ -1,87 +1,47 @@
-let words = [
-    "charm", "brick", "frost", "plane", "shock", "quest", "drink", 
-    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove", 
-    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved", 
-    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", 
-    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra", 
-    "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs", 
-    "twing", "unzip", "vodka", "whelp", "zesty"
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body onload="setupGame()">
+    <h1>Hangman</h1>
 
-let word, guessedWord, lives, guessedLetters;
+    <div class="illustration">
+        <div class="stick">
+            <div class="platform">
+                <div class="base"></div>
+                <div class="pole"></div>
+                <div class="overhang"></div>
+                <div class="extension"></div>
+            </div>
+            <div class="person">
+                <div id="head" class="head"></div>
+                <div id="torso" class="torso"></div>
+                <div id="arm-1" class="arm-1 arm"></div>
+                <div id="arm-2" class="arm-2 arm"></div>
+                <div id="foot-1" class="foot-1 foot"></div>
+                <div id="foot-2" class="foot-2 foot"></div>
+            </div>
+        </div>
+    </div>
 
-function setupGame() {
-    word = words[Math.floor(Math.random() * words.length)];
-    guessedWord = Array(word.length).fill("_");
-    lives = 6;
-    guessedLetters = new Set();
+    <div class="word" id="word-display">
+      
+    </div>
 
-    document.getElementById("lives").innerText = lives;
-    updateWordDisplay();
+    <div class="score">
+        <div>Lives: <span id="lives"></span></div>
+    </div>
 
-    let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
-    bodyParts.forEach(part => {
-        document.getElementById(part).style.display = "none";  
-    });
-}
-
-function updateWordDisplay() {
-    let wordDisplay = document.getElementById("word-display");
-    wordDisplay.innerHTML = guessedWord.map(letter => `<span class="letter">${letter}</span>`).join("");
-}
-
-function checkLetter() {
-    let inputField = document.getElementById("letter-input");
-    let letter = inputField.value.toLowerCase();
-    inputField.value = "";
-
-    if (!letter || letter.length !== 1 || !/[a-z]/.test(letter) || guessedLetters.has(letter)) {
-        alert("Please enter a valid, new letter.");
-        return;
-    }
-
-    guessedLetters.add(letter);
-
-    if (word.includes(letter)) {
-        for (let i = 0; i < word.length; i++) {
-            if (word[i] === letter) {
-                guessedWord[i] = letter;
-            }
-        }
-    } else {
-        lives--;
-        document.getElementById("lives").innerText = lives;
-        showNextBodyPart();
-    }
-
-    updateWordDisplay();
-    checkGameOver();
-}
-
-function showNextBodyPart() {
-    let bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
-    let index = 6 - lives - 1;  
-    if (index >= 0 && index < bodyParts.length) {
-        document.getElementById(bodyParts[index]).style.display = "block";
-    }
-}
-
-function checkGameOver() {
-    if (!guessedWord.includes("_")) {
-        setTimeout(() => {
-            alert(`🎉 Congratulations! You guessed the word: ${word}`);
-            resetGame();
-        }, 100);
-    } else if (lives === 0) {
-        setTimeout(() => {
-            alert(`❌ Game over! The word was: ${word}`);
-            resetGame();
-        }, 100);
-    }
-}
-
-function resetGame() {
-    setupGame();
-}
-
-document.addEventListener("DOMContentLoaded", setupGame);
+    <div class="answer">
+        <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter">
+        <button id="submit-button" onclick="checkLetter()">Submit</button>
+    </div>
+</body>
+</html> 
+     
+            
