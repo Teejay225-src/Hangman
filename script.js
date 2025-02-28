@@ -9,20 +9,20 @@ let words = [
 ];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-let displayedWord = ["_", "_", "_", "_", "_"];
-let attempts = 5;
+let displayedWord = [];
+let attempts = 6;
+let guessedLetters = [];
 
-if (selectedWord.length === 6) {
-    displayedWord.push("_");
-}
-if (selectedWord.length === 7) {
-    displayedWord.push("_", "_");
-}
-if (selectedWord.length === 8) {
-    displayedWord.push("_", "_", "_");
-}
-if (selectedWord.length === 9) {
-    displayedWord.push("_", "_", "_", "_");
+if (selectedWord.length === 5) {
+    displayedWord = ["_", "_", "_", "_", "_"];
+} else if (selectedWord.length === 6) {
+    displayedWord = ["_", "_", "_", "_", "_", "_"];
+} else if (selectedWord.length === 7) {
+    displayedWord = ["_", "_", "_", "_", "_", "_", "_"];
+} else if (selectedWord.length === 8) {
+    displayedWord = ["_", "_", "_", "_", "_", "_", "_", "_"];
+} else {
+    displayedWord = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
 }
 
 document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
@@ -37,6 +37,12 @@ document.getElementById("guessButton").addEventListener("click", function() {
         return;
     }
 
+    if (guessedLetters.includes(letter)) {
+        message.innerHTML = "You already guessed that letter! Try another.";
+        return;
+    }
+
+    guessedLetters.push(letter);
     let correctGuess = false;
 
     if (selectedWord[0] === letter) {
@@ -85,30 +91,38 @@ document.getElementById("guessButton").addEventListener("click", function() {
     }
 
     if (displayedWord.join("") === selectedWord) {
-        message.innerHTML = "You won!";
+        message.innerHTML = "Congratulations! You guessed the word.";
+        disableGame();
     } else if (attempts === 0) {
         message.innerHTML = "Game Over! The word was " + selectedWord;
+        disableGame();
     }
 
     document.getElementById("letterInput").value = "";
 });
 
 function revealHangmanPart() {
-    if (attempts === 4) {
+    if (attempts === 5) {
         document.getElementById("head").style.display = "block";
     }
-    if (attempts === 3) {
+    if (attempts === 4) {
         document.getElementById("torso").style.display = "block";
     }
-    if (attempts === 2) {
+    if (attempts === 3) {
         document.getElementById("leftArm").style.display = "block";
     }
-    if (attempts === 1) {
+    if (attempts === 2) {
         document.getElementById("rightArm").style.display = "block";
     }
-    if (attempts === 0) {
+    if (attempts === 1) {
         document.getElementById("leftLeg").style.display = "block";
+    }
+    if (attempts === 0) {
         document.getElementById("rightLeg").style.display = "block";
     }
 }
 
+function disableGame() {
+    document.getElementById("guessButton").disabled = true;
+    document.getElementById("letterInput").disabled = true;
+}
