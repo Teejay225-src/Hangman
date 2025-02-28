@@ -1,83 +1,58 @@
 let words = [
-    "admin", "bacon", "dance", "earth", "fresh", "grape", "scarf", "zebra", "block", "snake",
-    "charm", "brick", "frost", "plane", "shock", "quest", "drink", "blaze", "thumb", "crave",
-    "jumps", "wreck", "faint", "glove", "harsh", "quiet", "stamp", "drown", "climb", "loved",
-    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", "flock", "mirth", "vapor",
-    "wight", "units", "yield", "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs",
+    "charm", "brick", "frost", "plane", "shock", "quest", "drink", 
+    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove", 
+    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved", 
+    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", 
+    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra", 
+    "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs", 
     "twing", "unzip", "vodka", "whelp", "zesty"
 ];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-let displayedWord = "_ _ _ _ _";
+let displayedWord = "_".repeat(selectedWord.length).split("");
 let attempts = 5;
-let guessedLetters = "";
 
-document.getElementById("wordDisplay").innerHTML = displayedWord;
+document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
 document.getElementById("attempts").innerHTML = attempts;
 
-document.getElementById("guessButton").onclick = function () {
-    let input = document.getElementById("letterInput").value.toLowerCase();
-    document.getElementById("letterInput").value = "";
-
-    if (!input.match(/[a-z]/) || input.length !== 1) {
-        document.getElementById("message").innerHTML = "Enter a valid letter.";
+document.getElementById("guessButton").addEventListener("click", function() {
+    let letter = document.getElementById("letterInput").value.toLowerCase();
+    let message = document.getElementById("message");
+    
+    if (letter.length !== 1 || !letter.match(/[a-z]/)) {
+        message.innerHTML = "Please enter a valid letter.";
         return;
     }
 
-    if (guessedLetters.includes(input)) {
-        document.getElementById("message").innerHTML = "You've already guessed that letter.";
-        return;
+    let correctGuess = false;
+    for (let i = 0; i < selectedWord.length; i++) {
+        if (selectedWord[i] === letter) {
+            displayedWord[i] = letter;
+            correctGuess = true;
+        }
     }
 
-    guessedLetters += input;
-    document.getElementById("message").innerHTML = "";
+    document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
 
-    let updatedWord = "";
-    if (selectedWord[0] === input) {
-        updatedWord += input + " ";
-    } else {
-        updatedWord += displayedWord[0] + " ";
-    }
-
-    if (selectedWord[1] === input) {
-        updatedWord += input + " ";
-    } else {
-        updatedWord += displayedWord[2] + " ";
-    }
-
-    if (selectedWord[2] === input) {
-        updatedWord += input + " ";
-    } else {
-        updatedWord += displayedWord[4] + " ";
-    }
-
-    if (selectedWord[3] === input) {
-        updatedWord += input + " ";
-    } else {
-        updatedWord += displayedWord[6] + " ";
-    }
-
-    if (selectedWord[4] === input) {
-        updatedWord += input;
-    } else {
-        updatedWord += displayedWord[8];
-    }
-
-    if (displayedWord === updatedWord) {
+    if (!correctGuess) {
         attempts--;
         document.getElementById("attempts").innerHTML = attempts;
+        revealHangmanPart();
     }
 
-    displayedWord = updatedWord;
-    document.getElementById("wordDisplay").innerHTML = displayedWord;
-
-    if (!displayedWord.includes("_")) {
-        document.getElementById("message").innerHTML = "Congratulations! You won!";
-        document.getElementById("guessButton").innerHTML = "Game Over";
-        document.getElementById("guessButton").disabled = true;
+    if (displayedWord.join("") === selectedWord) {
+        message.innerHTML = "You won!";
     } else if (attempts === 0) {
-        document.getElementById("message").innerHTML = `Game over! The word was "${selectedWord}".`;
-        document.getElementById("guessButton").innerHTML = "Game Over";
-        document.getElementById("guessButton").disabled = true;
+        message.innerHTML = "Game Over! The word was " + selectedWord;
     }
-};
+
+    document.getElementById("letterInput").value = "";
+});
+
+function revealHangmanPart() {
+    let parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
+    let part = document.getElementById(parts[5 - attempts]);
+    if (part) {
+        part.style.display = "block";
+    }
+}
