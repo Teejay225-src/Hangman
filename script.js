@@ -1,90 +1,83 @@
 let words = [
-    "charm", "brick", "frost", "plane", "shock", "quest", "drink", 
-    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove", 
-    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved", 
-    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", 
-    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra", 
-    "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs", 
+    "admin", "bacon", "dance", "earth", "fresh", "grape", "scarf", "zebra", "block", "snake",
+    "charm", "brick", "frost", "plane", "shock", "quest", "drink", "blaze", "thumb", "crave",
+    "jumps", "wreck", "faint", "glove", "harsh", "quiet", "stamp", "drown", "climb", "loved",
+    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", "flock", "mirth", "vapor",
+    "wight", "units", "yield", "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs",
     "twing", "unzip", "vodka", "whelp", "zesty"
 ];
 
-let word = "";
-let guessedWord = [];
-let lives = 6;
-let guessedLetters = new Set();
-const bodyParts = ["head", "torso", "arm-1", "arm-2", "foot-1", "foot-2"];
+let selectedWord = words[Math.floor(Math.random() * words.length)];
+let displayedWord = "_ _ _ _ _";
+let attempts = 5;
+let guessedLetters = "";
 
-function setupGame() {
-    word = words[Math.floor(Math.random() * words.length)];
-    guessedWord = Array(word.length).fill("_");
-    lives = 6;
-    guessedLetters.clear();
+document.getElementById("wordDisplay").innerHTML = displayedWord;
+document.getElementById("attempts").innerHTML = attempts;
 
-    document.getElementById("lives").innerHTML = lives;
-    updateWordDisplay();
+document.getElementById("guessButton").onclick = function () {
+    let input = document.getElementById("letterInput").value.toLowerCase();
+    document.getElementById("letterInput").value = "";
 
-    // Hide all body parts
-    bodyParts.forEach(part => {
-        document.getElementById(part).style.display = "none";  
-    });
-
-    // Reset input
-    document.getElementById("letter-input").value = "";
-}
-
-function updateWordDisplay() {
-    document.getElementById("word-display").innerHTML = guessedWord.map(letter => `<span class="letter">${letter}</span>`).join("");
-}
-
-function checkLetter() {
-    let inputField = document.getElementById("letter-input");
-    let letter = inputField.value.toLowerCase();
-    inputField.value = "";
-
-    if (!letter || letter.length !== 1 || !/[a-z]/.test(letter) || guessedLetters.has(letter)) {
-        alert("Please enter a valid, new letter.");
+    if (!input.match(/[a-z]/) || input.length !== 1) {
+        document.getElementById("message").innerHTML = "Enter a valid letter.";
         return;
     }
 
-    guessedLetters.add(letter);
+    if (guessedLetters.includes(input)) {
+        document.getElementById("message").innerHTML = "You've already guessed that letter.";
+        return;
+    }
 
-    if (word.includes(letter)) {
-        guessedWord = guessedWord.map((char, index) => (word[index] === letter ? letter : char));
+    guessedLetters += input;
+    document.getElementById("message").innerHTML = "";
+
+    let updatedWord = "";
+    if (selectedWord[0] === input) {
+        updatedWord += input + " ";
     } else {
-        lives--;
-        document.getElementById("lives").innerHTML = lives;
-        showNextBodyPart();
+        updatedWord += displayedWord[0] + " ";
     }
 
-    updateWordDisplay();
-    checkGameOver();
-}
-
-function showNextBodyPart() {
-    let index = 6 - lives - 1;  
-    if (index >= 0 && index < bodyParts.length) {
-        document.getElementById(bodyParts[index]).style.display = "block";
+    if (selectedWord[1] === input) {
+        updatedWord += input + " ";
+    } else {
+        updatedWord += displayedWord[2] + " ";
     }
-}
 
-function checkGameOver() {
-    if (!guessedWord.includes("_")) {
-        setTimeout(() => {
-            alert(`🎉 Congratulations! You guessed the word: ${word}`);
-            setupGame();
-        }, 100);
-    } else if (lives === 0) {
-        setTimeout(() => {
-            alert(`❌ Game over! The word was: ${word}`);
-            setupGame();
-        }, 100);
+    if (selectedWord[2] === input) {
+        updatedWord += input + " ";
+    } else {
+        updatedWord += displayedWord[4] + " ";
     }
-}
 
-// Enable button only if a valid letter is entered
-function validateInput() {
-    let letter = document.getElementById("letter-input").value.toLowerCase();
-    document.querySelector("button").disabled = !(letter.length === 1 && /[a-z]/.test(letter));
-}
- 
+    if (selectedWord[3] === input) {
+        updatedWord += input + " ";
+    } else {
+        updatedWord += displayedWord[6] + " ";
+    }
 
+    if (selectedWord[4] === input) {
+        updatedWord += input;
+    } else {
+        updatedWord += displayedWord[8];
+    }
+
+    if (displayedWord === updatedWord) {
+        attempts--;
+        document.getElementById("attempts").innerHTML = attempts;
+    }
+
+    displayedWord = updatedWord;
+    document.getElementById("wordDisplay").innerHTML = displayedWord;
+
+    if (!displayedWord.includes("_")) {
+        document.getElementById("message").innerHTML = "Congratulations! You won!";
+        document.getElementById("guessButton").innerHTML = "Game Over";
+        document.getElementById("guessButton").disabled = true;
+    } else if (attempts === 0) {
+        document.getElementById("message").innerHTML = `Game over! The word was "${selectedWord}".`;
+        document.getElementById("guessButton").innerHTML = "Game Over";
+        document.getElementById("guessButton").disabled = true;
+    }
+};
