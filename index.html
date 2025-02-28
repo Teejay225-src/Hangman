@@ -1,15 +1,15 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman</title>
+    <title>Hangman Game</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
-<body onload="setupGame()">
+<body>
     <h1>Hangman</h1>
-
+    
+    <!-- Hangman Illustration -->
     <div class="illustration">
         <div class="stick">
             <div class="platform">
@@ -21,25 +21,31 @@
             <div class="person">
                 <div id="head" class="head"></div>
                 <div id="torso" class="torso"></div>
-                <div id="arm-1" class="arm"></div>
-                <div id="arm-2" class="arm"></div>
-                <div id="foot-1" class="foot"></div>
-                <div id="foot-2" class="foot"></div>
+                <div id="leftArm" class="arm"></div>
+                <div id="rightArm" class="arm"></div>
+                <div id="leftLeg" class="foot"></div>
+                <div id="rightLeg" class="foot"></div>
             </div>
         </div>
     </div>
 
-    <div class="word" id="word-display">
-        <!-- Letters will be dynamically inserted here -->
-    </div>
-
+    <!-- Word Display -->
+    <div class="word" id="wordDisplay"></div>
+    
+    <!-- Score Display -->
     <div class="score">
-        <div>Lives: <span id="lives"></span></div>
+        Attempts Left: <span id="attempts">5</span>
     </div>
 
+    <!-- Input & Button -->
     <div class="answer">
-        <input type="text" id="letter-input" maxlength="1" placeholder="Enter a letter" oninput="validateInput()">
-        <button onclick="checkLetter()">Submit</button>
+        <input type="text" id="letterInput" maxlength="1" placeholder="Enter a letter">
+        <button id="guessButton">Guess</button>
     </div>
+
+    <p id="message"></p>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
