@@ -1,34 +1,21 @@
 let words = [
-    "charm", "brick", "frost", "plane", "shock", "quest", "drink", 
-    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove", 
-    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved", 
-    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp", 
-    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra", 
-    "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs", 
-    "twing", "unzip", "vodka", "whelp", "zesty"
+    "charm", "brick", "frost", "plane", "shock", "quest", "drink",
+    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove",
+    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved",
+    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp",
+    "flock", "mirth", "vapor", "wight", "units", "yield", "zebra",
+    "quirk", "blunt", "drift", "glint", "spurt", "chasm", "knobs"
 ];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-let displayedWord = [];
+let displayedWord = ["_", "_", "_", "_", "_"];
 let attempts = 6;
 let guessedLetters = [];
-
-if (selectedWord.length === 5) {
-    displayedWord = ["_", "_", "_", "_", "_"];
-} else if (selectedWord.length === 6) {
-    displayedWord = ["_", "_", "_", "_", "_", "_"];
-} else if (selectedWord.length === 7) {
-    displayedWord = ["_", "_", "_", "_", "_", "_", "_"];
-} else if (selectedWord.length === 8) {
-    displayedWord = ["_", "_", "_", "_", "_", "_", "_", "_"];
-} else {
-    displayedWord = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
-}
 
 document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
 document.getElementById("attempts").innerHTML = attempts;
 
-document.getElementById("guessButton").addEventListener("click", function() {
+document.getElementById("guessButton").addEventListener("click", function () {
     let letter = document.getElementById("letterInput").value.toLowerCase();
     let message = document.getElementById("message");
 
@@ -65,22 +52,6 @@ document.getElementById("guessButton").addEventListener("click", function() {
         displayedWord[4] = letter;
         correctGuess = true;
     }
-    if (selectedWord.length > 5 && selectedWord[5] === letter) {
-        displayedWord[5] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord.length > 6 && selectedWord[6] === letter) {
-        displayedWord[6] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord.length > 7 && selectedWord[7] === letter) {
-        displayedWord[7] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord.length > 8 && selectedWord[8] === letter) {
-        displayedWord[8] = letter;
-        correctGuess = true;
-    }
 
     document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
 
@@ -92,10 +63,8 @@ document.getElementById("guessButton").addEventListener("click", function() {
 
     if (displayedWord.join("") === selectedWord) {
         message.innerHTML = "Congratulations! You guessed the word.";
-        disableGame();
     } else if (attempts === 0) {
         message.innerHTML = "Game Over! The word was " + selectedWord;
-        disableGame();
     }
 
     document.getElementById("letterInput").value = "";
@@ -120,9 +89,4 @@ function revealHangmanPart() {
     if (attempts === 0) {
         document.getElementById("rightLeg").style.display = "block";
     }
-}
-
-function disableGame() {
-    document.getElementById("guessButton").disabled = true;
-    document.getElementById("letterInput").disabled = true;
 }
