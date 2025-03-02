@@ -8,7 +8,7 @@ let words = [
 ];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-let displayedWord = ["_", "_", "_", "_", "_"];
+let displayedWord = Array(selectedWord.length).fill("_");
 let attempts = 6;
 let guessedLetters = [];
 
@@ -16,8 +16,11 @@ document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
 document.getElementById("attempts").innerHTML = attempts;
 
 document.getElementById("guessButton").addEventListener("click", function () {
-    let letter = document.getElementById("letterInput").value.toLowerCase();
+    let letterInput = document.getElementById("letterInput");
+    let letter = letterInput.value.toLowerCase();
     let message = document.getElementById("message");
+
+    message.innerHTML = ""; // Clear previous message
 
     if (letter.length !== 1 || !letter.match(/[a-z]/)) {
         message.innerHTML = "Please enter a valid letter.";
@@ -32,25 +35,12 @@ document.getElementById("guessButton").addEventListener("click", function () {
     guessedLetters.push(letter);
     let correctGuess = false;
 
-    if (selectedWord[0] === letter) {
-        displayedWord[0] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord[1] === letter) {
-        displayedWord[1] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord[2] === letter) {
-        displayedWord[2] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord[3] === letter) {
-        displayedWord[3] = letter;
-        correctGuess = true;
-    }
-    if (selectedWord[4] === letter) {
-        displayedWord[4] = letter;
-        correctGuess = true;
+    // Check and reveal letter in the word
+    for (let i = 0; i < selectedWord.length; i++) {
+        if (selectedWord[i] === letter) {
+            displayedWord[i] = letter;
+            correctGuess = true;
+        }
     }
 
     document.getElementById("wordDisplay").innerHTML = displayedWord.join(" ");
@@ -62,31 +52,19 @@ document.getElementById("guessButton").addEventListener("click", function () {
     }
 
     if (displayedWord.join("") === selectedWord) {
-        message.innerHTML = "Congratulations! You guessed the word.";
+        message.innerHTML = "🎉 Congratulations! You guessed the word.";
     } else if (attempts === 0) {
-        message.innerHTML = "Game Over! The word was " + selectedWord;
+        message.innerHTML = "💀 Game Over! The word was: " + selectedWord;
     }
 
-    document.getElementById("letterInput").value = "";
+    letterInput.value = "";
+    letterInput.focus();
 });
 
 function revealHangmanPart() {
-    if (attempts === 5) {
-        document.getElementById("head").style.display = "block";
-    }
-    if (attempts === 4) {
-        document.getElementById("torso").style.display = "block";
-    }
-    if (attempts === 3) {
-        document.getElementById("leftArm").style.display = "block";
-    }
-    if (attempts === 2) {
-        document.getElementById("rightArm").style.display = "block";
-    }
-    if (attempts === 1) {
-        document.getElementById("leftLeg").style.display = "block";
-    }
-    if (attempts === 0) {
-        document.getElementById("rightLeg").style.display = "block";
+    let parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
+    let partToShow = parts[6 - attempts - 1];
+    if (partToShow) {
+        document.getElementById(partToShow).style.display = "block";
     }
 }
