@@ -5,6 +5,7 @@ div, h1, span, p {
 body {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center everything horizontally */
     background-color: pink;
 }
 
@@ -18,6 +19,7 @@ h1 {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    position: relative;
 }
 
 .stick {
@@ -26,6 +28,7 @@ h1 {
     height: 700px;
 }
 
+/* Structure */
 .platform, .person {
     position: absolute;
 }
@@ -45,19 +48,24 @@ h1 {
     width: 300px;
     height: 5px;
     bottom: 0%;
-    left: -15%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Pole */
 .pole {
     width: 5px;
     height: 700px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Overhang */
 .overhang {
     width: 400px;
     height: 5px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Extension */
@@ -69,10 +77,11 @@ h1 {
 
 /* Hangman Figure */
 .person {
-    width: 300px;
-    height: 500px;
-    top: 17%;
-    right: -9.2%;
+    width: 100px;
+    height: 200px;
+    top: 150px; /* Adjusted to align under the pole */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Head */
@@ -136,12 +145,15 @@ h1 {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    gap: 5px;
+    gap: 10px; /* Increased spacing */
 }
 
 .letter {
-    width: 100px;
-    font-size: 50px;
+    width: 120px; /* Increased size */
+    height: 80px; /* Added height for better visibility */
+    font-size: 60px; /* Increased font size */
+    border-bottom: 5px solid black; /* Added an underline */
+    text-align: center;
 }
 
 /* Score Display */
