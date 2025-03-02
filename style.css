@@ -86,6 +86,51 @@ h1 {
     transform: translateX(-50%);
 }
 
+/* Torso */
+.torso {
+    width: 5px;
+    height: 120px;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Arms */
+.arm {
+    width: 60px;
+    height: 5px;
+}
+
+#leftArm {
+    top: 100px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+
+#rightArm {
+    top: 100px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}
+
+/* Legs */
+.foot {
+    width: 60px;
+    height: 5px;
+}
+
+#leftLeg {
+    top: 195px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+
+#rightLeg {
+    top: 195px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}
+
 /* Word Display */
 .word, .score {
     display: flex;
@@ -117,6 +162,7 @@ button {
     font-size: 16px;
 }
 
+/* Hide Hangman Parts Initially */
 .head, .arm, .torso, .foot {
     display: none;
 }
