@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     align-items: center; /* Center everything horizontally */
     background-color: pink;
+    height: 100vh;
 }
 
 /* Header */
@@ -18,14 +19,14 @@ h1 {
 .illustration {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
     position: relative;
 }
 
 .stick {
     position: relative;
-    width: 600px;
-    height: 700px;
+    width: 300px;
+    height: 400px;
 }
 
 /* Structure */
@@ -34,110 +35,123 @@ h1 {
 }
 
 .platform {
-    width: 400px;
-    height: 700px;
-}
-
-.platform div, .person div {
-    background-color: black;
-    position: absolute;
+    width: 300px;
+    height: 400px;
 }
 
 /* Base */
 .base {
-    width: 300px;
+    width: 150px;
     height: 5px;
     bottom: 0%;
     left: 50%;
     transform: translateX(-50%);
+    background-color: black;
+    position: absolute;
 }
 
 /* Pole */
 .pole {
     width: 5px;
-    height: 700px;
+    height: 350px;
     left: 50%;
+    bottom: 5px;
     transform: translateX(-50%);
+    background-color: black;
+    position: absolute;
 }
 
 /* Overhang */
 .overhang {
-    width: 400px;
+    width: 200px;
     height: 5px;
     left: 50%;
+    top: 0;
     transform: translateX(-50%);
+    background-color: black;
+    position: absolute;
 }
 
-/* Extension */
+/* Extension (for the rope) */
 .extension {
     width: 5px;
-    height: 100px;
-    right: 0%;
+    height: 50px;
+    left: 75%;
+    top: 0;
+    background-color: black;
+    position: absolute;
 }
 
 /* Hangman Figure */
 .person {
     width: 100px;
     height: 200px;
-    top: 150px; /* Adjusted to align under the pole */
-    left: 50%;
+    top: 50px;
+    left: 75%;
     transform: translateX(-50%);
 }
 
 /* Head */
 .head {
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 5px solid black;
-    top: 0;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
+    position: absolute;
 }
 
 /* Torso */
 .torso {
     width: 5px;
-    height: 120px;
-    top: 75px;
+    height: 80px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
+    background-color: black;
+    position: absolute;
 }
 
 /* Arms */
 .arm {
-    width: 60px;
+    width: 50px;
     height: 5px;
+    background-color: black;
+    position: absolute;
 }
 
 #leftArm {
-    top: 100px;
+    top: 120px;
     left: 50%;
-    transform: rotate(-30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(-30deg);
 }
 
 #rightArm {
-    top: 100px;
+    top: 120px;
     left: 50%;
-    transform: rotate(30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(30deg);
 }
 
 /* Legs */
 .foot {
-    width: 60px;
+    width: 50px;
     height: 5px;
+    background-color: black;
+    position: absolute;
 }
 
 #leftLeg {
-    top: 195px;
+    top: 180px;
     left: 50%;
-    transform: rotate(-30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(-30deg);
 }
 
 #rightLeg {
-    top: 195px;
+    top: 180px;
     left: 50%;
-    transform: rotate(30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(30deg);
 }
 
 /* Word Display */
@@ -145,33 +159,44 @@ h1 {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    gap: 10px; /* Increased spacing */
+    gap: 15px; /* Increased spacing */
 }
 
 .letter {
-    width: 120px; /* Increased size */
-    height: 80px; /* Added height for better visibility */
-    font-size: 60px; /* Increased font size */
-    border-bottom: 5px solid black; /* Added an underline */
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border-bottom: 5px solid black;
     text-align: center;
 }
 
 /* Score Display */
 .score {
     font-size: 25px;
+    margin-top: 10px;
 }
 
 /* Input and Button */
 .answer {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    gap: 10px;
 }
 
 button {
-    width: 100px;
+    width: 120px;
     height: 50px;
-    font-size: 16px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkred;
 }
 
 /* Hide Hangman Parts Initially */
