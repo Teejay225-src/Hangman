@@ -1,176 +1,180 @@
+div, h1, span, p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center everything horizontally */
+    background-color: pink;
 }
 
+/* Header */
 h1 {
-    color: #333;
+    text-align: center;
 }
 
+/* Hangman Illustration */
 .illustration {
-    margin: 20px auto;
-    width: 200px;
-    height: 250px;
-    position: relative;
-}
-
-/* Hangman word display */
-.word {
     display: flex;
     justify-content: center;
-    font-size: 24px;
-    margin: 20px;
-}
-
-.letter {
-    margin: 0 5px;
-    font-size: 30px;
-    font-weight: bold;
-    border-bottom: 2px solid black;
-    width: 30px;
-    display: inline-block;
-    text-align: center;
-}
-
-.score {
-    font-size: 20px;
-    margin: 10px;
-}
-
-.answer {
-    margin-top: 15px;
-}
-
-.answer input {
-    padding: 10px;
-    font-size: 16px;
-    width: 50px;
-    text-align: center;
-}
-
-.answer button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Hangman post and platform */
-.platform {
+    margin-top: 10px;
     position: relative;
-    width: 100px;
-    height: 180px;
-    margin: auto;
 }
 
+.stick {
+    position: relative;
+    width: 600px;
+    height: 700px;
+}
+
+/* Structure */
+.platform, .person {
+    position: absolute;
+}
+
+.platform {
+    width: 400px;
+    height: 700px;
+}
+
+.platform div, .person div {
+    background-color: black;
+    position: absolute;
+}
+
+/* Base */
 .base {
-    width: 100px;
-    height: 10px;
-    background: black;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.pole {
-    width: 10px;
-    height: 150px;
-    background: black;
-    position: absolute;
-    bottom: 10px;
-    left: 30px;
-}
-
-.overhang {
-    width: 70px;
+    width: 300px;
     height: 5px;
-    background: black;
-    position: absolute;
-    top: 0;
-    left: 30px;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* Pole */
+.pole {
+    width: 5px;
+    height: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Overhang */
+.overhang {
+    width: 400px;
+    height: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Extension */
 .extension {
     width: 5px;
-    height: 30px;
-    background: black;
-    position: absolute;
-    top: 0;
-    left: 95px;
+    height: 100px;
+    right: 0%;
 }
 
-.rope {
-    width: 3px;
-    height: 20px;
-    background: black;
-    position: absolute;
-    top: 30px;
-    left: 97px;
-}
-
-/* Hangman body parts */
-.head, .torso, .arm, .foot {
-    display: none;
-    position: absolute;
-    background-color: black;
+/* Hangman Figure */
+.person {
+    width: 100px;
+    height: 200px;
+    top: 150px; /* Adjusted to align under the pole */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Head */
 .head {
-    width: 30px;
-    height: 30px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    border: 3px solid black;
-    background: none;
-    top: 50px;
-    left: 83px;
+    border: 5px solid black;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Torso */
 .torso {
     width: 5px;
+    height: 120px;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Arms */
+.arm {
+    width: 60px;
+    height: 5px;
+}
+
+#leftArm {
+    top: 100px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+
+#rightArm {
+    top: 100px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}
+
+/* Legs */
+.foot {
+    width: 60px;
+    height: 5px;
+}
+
+#leftLeg {
+    top: 195px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+
+#rightLeg {
+    top: 195px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}
+
+/* Word Display */
+.word, .score {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px; /* Increased spacing */
+}
+
+.letter {
+    width: 120px; /* Increased size */
+    height: 80px; /* Added height for better visibility */
+    font-size: 60px; /* Increased font size */
+    border-bottom: 5px solid black; /* Added an underline */
+    text-align: center;
+}
+
+/* Score Display */
+.score {
+    font-size: 25px;
+}
+
+/* Input and Button */
+.answer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+button {
+    width: 100px;
     height: 50px;
-    top: 80px;
-    left: 97px;
+    font-size: 16px;
 }
 
-/* Arms rotated downward */
-.arm-1, .arm-2 {
-    width: 30px;
-    height: 5px;
-    background: black;
-    position: absolute;
-}
-
-.arm-1 {
-    top: 95px;
-    left: 72px;
-    transform: rotate(160deg);
-}
-
-.arm-2 {
-    top: 95px;
-    left: 100px;
-    transform: rotate(-160deg);
-}
-
-/* Legs rotated downward */
-.foot-1, .foot-2 {
-    width: 30px;
-    height: 5px;
-    background: black;
-    position: absolute;
-}
-
-.foot-1 {
-    top: 130px;
-    left: 72px;
-    transform: rotate(160deg);
-}
-
-.foot-2 {
-    top: 130px;
-    left: 100px;
-    transform: rotate(-160deg);
+/* Hide Hangman Parts Initially */
+.head, .arm, .torso, .foot {
+    display: none;
 }
