@@ -53,8 +53,10 @@ document.getElementById("guessButton").addEventListener("click", function () {
 
     if (displayedWord.join("") === selectedWord) {
         message.innerHTML = "🎉 Congratulations! You guessed the word.";
+        endGame();
     } else if (attempts === 0) {
         message.innerHTML = "💀 Game Over! The word was: " + selectedWord;
+        endGame();
     }
 
     letterInput.value = "";
@@ -63,8 +65,16 @@ document.getElementById("guessButton").addEventListener("click", function () {
 
 function revealHangmanPart() {
     let parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
-    let partToShow = parts[6 - attempts - 1];
+    let partToShow = parts[6 - attempts];  // Fixed index calculation
     if (partToShow) {
-        document.getElementById(partToShow).style.display = "block";
+        let partElement = document.getElementById(partToShow);
+        if (partElement) {
+            partElement.style.display = "block";
+        }
     }
+}
+
+function endGame() {
+    document.getElementById("guessButton").disabled = true;
+    document.getElementById("letterInput").disabled = true;
 }
