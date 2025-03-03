@@ -125,13 +125,13 @@ h1 {
 #leftArm {
     top: 120px;
     left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
+    transform: translateX(-50%) rotate(-45deg);
 }
 
 #rightArm {
     top: 120px;
     left: 50%;
-    transform: translateX(-50%) rotate(30deg);
+    transform: translateX(-50%) rotate(45deg);
 }
 
 /* Legs */
