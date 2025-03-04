@@ -103,7 +103,7 @@ h1 {
 
 #leftArm {
     top: 100px; /* Slightly down from top of torso */
-    left: -60px;
+    left: -5px;
     transform: rotate(-30deg);
 }
 
@@ -124,7 +124,7 @@ h1 {
 
 #leftLeg {
     top: 175px; /* Below the torso */
-    left: -40px;
+    left: -5px;
     transform: rotate(-30deg);
 }
 
