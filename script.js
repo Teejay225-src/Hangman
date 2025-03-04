@@ -96,10 +96,22 @@ function checkGameStatus() {
         endGame();
     }
 }
-
 function endGame() {
     guessButton.disabled = true;
     letterInput.disabled = true;
+
+    if (attempts === 0) {
+        // Reveal all remaining parts
+        const parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
+        parts.forEach(part => {
+            const partElement = document.getElementById(part);
+            if (partElement) {
+                partElement.style.display = "block";
+            }
+        });
+    }
+}
+
 }
 
 function resetInput() {
