@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hangman</h1>
-    
-    <!-- Hangman Illustration -->
-<div class="illustration">
-  <div class="platform">
-    <div class="base"></div>
-    <div class="pole"></div>
-    <div class="overhang"></div>
-    <div class="extension"></div>
-  </div>
-
-  <div class="person">
-    <div class="head"></div>
-    <div class="torso"></div>
-    <div id="leftArm" class="arm"></div>
-    <div id="rightArm" class="arm"></div>
-    <div id="leftLeg" class="leg"></div>
-    <div id="rightLeg" class="leg"></div>
-  </div>
-</div>
-
-    <!-- Word Display -->
-    <div class="word" id="wordDisplay"></div>
-    
-    <!-- Score Display -->
-    <div class="score">
-        Attempts Left: <span id="attempts">6</span>
+  <h1>Hangman</h1>
+  
+  <!-- Hangman Illustration -->
+  <div class="illustration">
+    <div class="platform">
+      <div class="base"></div>
+      <div class="pole"></div>
+      <div class="overhang"></div>
+      <div class="extension"></div>
     </div>
-
-    <!-- Input & Button -->
-    <div class="answer">
-        <input type="text" id="letterInput" maxlength="1" placeholder="Enter a letter">
-        <button id="guessButton">Guess</button>
+  
+    <div class="person">
+      <!-- Added IDs for head and torso -->
+      <div id="head" class="head"></div>
+      <div id="torso" class="torso"></div>
+      <div id="leftArm" class="arm"></div>
+      <div id="rightArm" class="arm"></div>
+      <div id="leftLeg" class="leg"></div>
+      <div id="rightLeg" class="leg"></div>
     </div>
-
-    <p id="message"></p>
-
-    <script src="script.js"></script>
+  </div>
+  
+  <!-- Word Display -->
+  <div class="word" id="wordDisplay"></div>
+  
+  <!-- Score Display -->
+  <div class="score">
+    Attempts Left: <span id="attempts">6</span>
+  </div>
+  
+  <!-- Input & Button -->
+  <div class="answer">
+    <input type="text" id="letterInput" maxlength="1" placeholder="Enter a letter">
+    <button id="guessButton">Guess</button>
+  </div>
+  
+  <p id="message"></p>
+  
+  <script src="script.js"></script>
 </body>
 </html>
