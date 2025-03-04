@@ -1,119 +1,136 @@
+// Global Variables
 let words = [
-  "charm", "brick", "frost", "plane", "shock", "quest", "drink",
-  "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove",
-  "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved",
-  "brand", "squid", "toned", "prize", "plumb", "sword", "crimp",
-  "flock", "mirth", "vapor", "yield", "zebra", "quirk", "blunt",
-  "drift", "glint", "spurt", "chasm", "knobs"
+    "charm", "brick", "frost", "plane", "shock", "quest", "drink",
+    "blaze", "thumb", "crave", "jumps", "wreck", "faint", "glove",
+    "harsh", "quiet", "stamp", "drown", "climb", "fresh", "loved",
+    "brand", "squid", "toned", "prize", "plumb", "sword", "crimp",
+    "flock", "mirth", "vapor", "yield", "zebra", "quirk", "blunt",
+    "drift", "glint", "spurt", "chasm", "knobs"
 ];
-
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+let selectedWord = "";
+// We assume a five-letter word so we use an array of 5 underscores.
 let displayedWord = ["_", "_", "_", "_", "_"];
-let attempts = 6;
+let lives = 6;
 let guessedLetters = [];
 
-const wordDisplay = document.getElementById("wordDisplay");
-const attemptsDisplay = document.getElementById("attempts");
-const letterInput = document.getElementById("letterInput");
-const guessButton = document.getElementById("guessButton");
-const messageDisplay = document.getElementById("message");
-
-wordDisplay.innerHTML = displayedWord.join(" ");
-attemptsDisplay.innerHTML = attempts;
-
-guessButton.addEventListener("click", handleGuess);
-
-function handleGuess() {
-  const letter = letterInput.value.trim().toLowerCase();
-
-  if (letter.length !== 1 || !letter.match(/[a-z]/)) {
-    messageDisplay.innerHTML = "❗ Please enter a valid letter (a-z).";
-    resetInput();
-    return;
-  }
-
-  if (guessedLetters.includes(letter)) {
-    messageDisplay.innerHTML = "🔁 You've already guessed that letter! Try another.";
-    resetInput();
-    return;
-  }
-
-  guessedLetters.push(letter);
-
-  let correctGuess = false;
-
-  // Manually check all 5 positions
-  if (selectedWord[0] === letter) {
-    displayedWord[0] = letter;
-    correctGuess = true;
-  }
-  if (selectedWord[1] === letter) {
-    displayedWord[1] = letter;
-    correctGuess = true;
-  }
-  if (selectedWord[2] === letter) {
-    displayedWord[2] = letter;
-    correctGuess = true;
-  }
-  if (selectedWord[3] === letter) {
-    displayedWord[3] = letter;
-    correctGuess = true;
-  }
-  if (selectedWord[4] === letter) {
-    displayedWord[4] = letter;
-    correctGuess = true;
-  }
-
-  wordDisplay.innerHTML = displayedWord.join(" ");
-
-  if (!correctGuess) {
-    attempts--;
-    attemptsDisplay.innerHTML = attempts;
-    revealHangmanPart();
-  }
-
-  checkGameStatus();
-  resetInput();
+// Called when the page loads
+function setupGame() {
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    // Reset the displayed word manually for 5 letters.
+    displayedWord[0] = "_";
+    displayedWord[1] = "_";
+    displayedWord[2] = "_";
+    displayedWord[3] = "_";
+    displayedWord[4] = "_";
+    lives = 6;
+    guessedLetters = [];
+    updateWordDisplay();
+    updateLives();
+    hideHangmanParts();
 }
 
+// Updates the word display (elements with IDs s-0 to s-4)
+function updateWordDisplay() {
+    document.getElementById("s-0").textContent = displayedWord[0];
+    document.getElementById("s-1").textContent = displayedWord[1];
+    document.getElementById("s-2").textContent = displayedWord[2];
+    document.getElementById("s-3").textContent = displayedWord[3];
+    document.getElementById("s-4").textContent = displayedWord[4];
+}
+
+// Updates the lives display element
+function updateLives() {
+    document.getElementById("lives").textContent = lives;
+}
+
+// Hides all hangman parts at game start
+function hideHangmanParts() {
+    document.getElementById("head").style.display = "none";
+    document.getElementById("torso").style.display = "none";
+    document.getElementById("arm-1").style.display = "none";
+    document.getElementById("arm-2").style.display = "none";
+    document.getElementById("foot-1").style.display = "none";
+    document.getElementById("foot-2").style.display = "none";
+}
+
+// Reveals a hangman part based on the number of wrong guesses
 function revealHangmanPart() {
-  const parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
-  const partToShow = parts[6 - attempts - 1];
-  if (partToShow) {
-    const partElement = document.getElementById(partToShow);
-    if (partElement) {
-      partElement.style.display = "block";
+    // wrongCount = total parts revealed so far = 6 - lives
+    let wrongCount = 6 - lives;
+    if (wrongCount === 1) {
+        document.getElementById("head").style.display = "block";
+    } else if (wrongCount === 2) {
+        document.getElementById("torso").style.display = "block";
+    } else if (wrongCount === 3) {
+        document.getElementById("arm-1").style.display = "block";
+    } else if (wrongCount === 4) {
+        document.getElementById("arm-2").style.display = "block";
+    } else if (wrongCount === 5) {
+        document.getElementById("foot-1").style.display = "block";
+    } else if (wrongCount === 6) {
+        document.getElementById("foot-2").style.display = "block";
     }
-  }
 }
 
+// Checks the game status and alerts the user if they've won or lost
 function checkGameStatus() {
-  if (displayedWord.join("") === selectedWord) {
-    messageDisplay.innerHTML = "🎉 Congratulations! You guessed the word.";
-    endGame();
-  } else if (attempts === 0) {
-    messageDisplay.innerHTML = `💀 Game Over! The word was: <strong>${selectedWord}</strong>`;
-    endGame();
-  }
+    if (displayedWord.join("") === selectedWord) {
+        alert("🎉 Congratulations! You guessed the word: " + selectedWord);
+        setupGame();
+    } else if (lives <= 0) {
+        alert("💀 Game Over! The word was: " + selectedWord);
+        setupGame();
+    }
 }
 
-function endGame() {
-  guessButton.disabled = true;
-  letterInput.disabled = true;
+// Called when the user clicks the "Enter a letter" button
+function checkLetter() {
+    let letter = prompt("Enter a letter:");
+    if (letter === null) {
+        // User cancelled the prompt
+        return;
+    }
+    letter = letter.trim().toLowerCase();
+    if (letter.length !== 1 || !letter.match(/[a-z]/)) {
+        alert("❗ Please enter a valid single letter (a-z).");
+        return;
+    }
+    // Check if the letter was already guessed
+    if (
+        guessedLetters.indexOf(letter) !== -1
+    ) {
+        alert("🔁 You've already guessed that letter!");
+        return;
+    }
+    guessedLetters.push(letter);
 
-  if (attempts === 0) {
-    // Reveal all remaining parts
-    const parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
-    parts.forEach(part => {
-      const partElement = document.getElementById(part);
-      if (partElement) {
-        partElement.style.display = "block";
-      }
-    });
-  }
-}
-
-function resetInput() {
-  letterInput.value = "";
-  letterInput.focus();
+    let correctGuess = false;
+    // Manually check each position (assuming 5-letter word)
+    if (selectedWord[0] === letter) {
+        displayedWord[0] = letter;
+        correctGuess = true;
+    }
+    if (selectedWord[1] === letter) {
+        displayedWord[1] = letter;
+        correctGuess = true;
+    }
+    if (selectedWord[2] === letter) {
+        displayedWord[2] = letter;
+        correctGuess = true;
+    }
+    if (selectedWord[3] === letter) {
+        displayedWord[3] = letter;
+        correctGuess = true;
+    }
+    if (selectedWord[4] === letter) {
+        displayedWord[4] = letter;
+        correctGuess = true;
+    }
+    if (!correctGuess) {
+        lives--;
+        updateLives();
+        revealHangmanPart();
+    }
+    updateWordDisplay();
+    checkGameStatus();
 }
