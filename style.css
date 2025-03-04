@@ -5,40 +5,34 @@ div, h1, span, p {
 body {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center everything horizontally */
+    align-items: center;
     background-color: pink;
+    margin: 0;
+    padding: 20px;
 }
 
 /* Header */
 h1 {
     text-align: center;
+    margin: 20px 0;
 }
 
 /* Hangman Illustration */
 .illustration {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
     position: relative;
-}
-
-.stick {
-    position: relative;
-    width: 600px;
-    height: 700px;
-}
-
-/* Structure */
-.platform, .person {
-    position: absolute;
-}
-
-.platform {
     width: 400px;
     height: 700px;
+    margin-top: 10px;
 }
 
-.platform div, .person div {
+/* Stick (Gallows) */
+.platform {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.platform div {
     background-color: black;
     position: absolute;
 }
@@ -47,7 +41,7 @@ h1 {
 .base {
     width: 300px;
     height: 5px;
-    bottom: 0%;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -55,33 +49,33 @@ h1 {
 /* Pole */
 .pole {
     width: 5px;
-    height: 700px;
-    left: 50%;
-    transform: translateX(-50%);
+    height: 100%;
+    bottom: 0;
+    left: 25%;
 }
 
 /* Overhang */
 .overhang {
-    width: 400px;
+    width: 200px;
     height: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 25%;
 }
 
 /* Extension */
 .extension {
     width: 5px;
     height: 100px;
-    right: 0%;
+    top: 0;
+    left: calc(25% + 200px);
 }
 
 /* Hangman Figure */
 .person {
-    width: 100px;
-    height: 200px;
-    top: 150px; /* Adjusted to align under the pole */
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+    top: 100px; /* Start below the extension */
+    left: calc(25% + 200px);
+    width: 0;
 }
 
 /* Head */
@@ -90,7 +84,8 @@ h1 {
     height: 75px;
     border-radius: 50%;
     border: 5px solid black;
-    top: 0;
+    position: absolute;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -99,7 +94,8 @@ h1 {
 .torso {
     width: 5px;
     height: 120px;
-    top: 75px;
+    position: absolute;
+    top: 175px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -108,73 +104,82 @@ h1 {
 .arm {
     width: 60px;
     height: 5px;
+    background-color: black;
+    position: absolute;
 }
 
 #leftArm {
-    top: 100px;
+    top: 200px;
     left: 50%;
-    transform: rotate(-30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(-30deg);
 }
 
 #rightArm {
-    top: 100px;
+    top: 200px;
     left: 50%;
-    transform: rotate(30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(30deg);
 }
 
 /* Legs */
 .foot {
     width: 60px;
     height: 5px;
+    background-color: black;
+    position: absolute;
 }
 
 #leftLeg {
-    top: 195px;
+    top: 295px;
     left: 50%;
-    transform: rotate(-30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(-30deg);
 }
 
 #rightLeg {
-    top: 195px;
+    top: 295px;
     left: 50%;
-    transform: rotate(30deg) translateX(-50%);
+    transform: translateX(-50%) rotate(30deg);
 }
 
 /* Word Display */
-.word, .score {
+.word {
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    gap: 10px; /* Increased spacing */
+    gap: 10px;
 }
 
 .letter {
-    width: 120px; /* Increased size */
-    height: 80px; /* Added height for better visibility */
-    font-size: 60px; /* Increased font size */
-    border-bottom: 5px solid black; /* Added an underline */
+    width: 60px;
+    height: 80px;
+    font-size: 60px;
+    border-bottom: 5px solid black;
     text-align: center;
 }
 
 /* Score Display */
 .score {
     font-size: 25px;
+    margin-top: 20px;
 }
 
 /* Input and Button */
 .answer {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    gap: 10px;
 }
 
 button {
     width: 100px;
     height: 50px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 /* Hide Hangman Parts Initially */
-.head, .arm, .torso, .foot {
+.head, .torso, .arm, .foot {
     display: none;
 }
+
+ 
