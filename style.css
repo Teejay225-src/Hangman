@@ -61,36 +61,38 @@ h1 {
     top: 0;
     left: calc(25% + 150px);
 }
-
 .person {
     position: absolute;
-    top: 50px;
-    left: calc(25% + 150px - 37.5px);
-    width: 75px;
+    top: 50px; /* Same as the extension height */
+    left: calc(25% + 150px); /* Same as the extension's left + width */
+    width: 0; /* Set to 0 to centralize everything */
     height: 250px;
 }
 
+/* Head */
 .head {
-    position: relative;
+    position: absolute;
     width: 75px;
     height: 75px;
     border-radius: 50%;
     border: 5px solid black;
-    margin: 0 auto;
-    display: none;
     top: 0;
+    left: -37.5px; /* Half of the width to center it */
+    display: none;
 }
 
+/* Torso */
 .torso {
-    position: relative;
+    position: absolute;
     width: 5px;
     height: 100px;
     background-color: black;
-    margin: 0 auto;
+    top: 75px; /* Right below the head */
+    left: -2.5px; /* Half of width to center it */
     display: none;
-    top: 0;
 }
 
+/* Arms */
 .arm {
     width: 60px;
     height: 5px;
@@ -100,17 +102,18 @@ h1 {
 }
 
 #leftArm {
-    top: 90px;
+    top: 100px; /* Slightly down from top of torso */
     left: -60px;
     transform: rotate(-30deg);
 }
 
 #rightArm {
-    top: 90px;
-    right: -60px;
+    top: 100px;
+    left: 5px;
     transform: rotate(30deg);
 }
 
+/* Legs */
 .leg {
     width: 60px;
     height: 5px;
@@ -120,53 +123,14 @@ h1 {
 }
 
 #leftLeg {
-    top: 175px;
+    top: 175px; /* Below the torso */
     left: -40px;
     transform: rotate(-30deg);
 }
 
 #rightLeg {
     top: 175px;
-    right: -40px;
+    left: 5px;
     transform: rotate(30deg);
 }
-
-.word {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    gap: 10px;
-}
-
-.letter {
-    width: 60px;
-    height: 80px;
-    font-size: 60px;
-    border-bottom: 5px solid black;
-    text-align: center;
-}
-
-.score {
-    font-size: 25px;
-    margin-top: 20px;
-}
-
-.answer {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 10px;
-}
-
-button {
-    width: 100px;
-    height: 50px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.head, .torso, .arm, .leg {
-    display: none;
-}
-
 
