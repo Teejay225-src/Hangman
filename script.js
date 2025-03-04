@@ -17,18 +17,15 @@ document.getElementById("attempts").innerHTML = attempts;
 
 document.getElementById("guessButton").addEventListener("click", function () {
     let letterInput = document.getElementById("letterInput");
-    let letter = letterInput.value.toLowerCase();
-    let message = document.getElementById("message");
-
-    message.innerHTML = ""; // Clear previous message
+    let letter = letterInput.value.trim().toLowerCase(); // Added trim to remove whitespace
 
     if (letter.length !== 1 || !letter.match(/[a-z]/)) {
-        message.innerHTML = "Please enter a valid letter.";
+        document.getElementById("message").innerHTML = "Please enter a valid letter.";
         return;
     }
 
     if (guessedLetters.includes(letter)) {
-        message.innerHTML = "You already guessed that letter! Try another.";
+        document.getElementById("message").innerHTML = "You already guessed that letter! Try another.";
         return;
     }
 
@@ -52,20 +49,20 @@ document.getElementById("guessButton").addEventListener("click", function () {
     }
 
     if (displayedWord.join("") === selectedWord) {
-        message.innerHTML = "🎉 Congratulations! You guessed the word.";
+        document.getElementById("message").innerHTML = "🎉 Congratulations! You guessed the word.";
         endGame();
     } else if (attempts === 0) {
-        message.innerHTML = "💀 Game Over! The word was: " + selectedWord;
+        document.getElementById("message").innerHTML = "💀 Game Over! The word was: " + selectedWord;
         endGame();
     }
 
-    letterInput.value = "";
-    letterInput.focus();
+    letterInput.value = ""; // Clear input after each guess
+    letterInput.focus(); // Focus back on input for next guess
 });
 
 function revealHangmanPart() {
     let parts = ["head", "torso", "leftArm", "rightArm", "leftLeg", "rightLeg"];
-    let partToShow = parts[6 - attempts];  // Fixed index calculation
+    let partToShow = parts[6 - attempts]; // Fixed index calculation
     if (partToShow) {
         let partElement = document.getElementById(partToShow);
         if (partElement) {
@@ -78,3 +75,4 @@ function endGame() {
     document.getElementById("guessButton").disabled = true;
     document.getElementById("letterInput").disabled = true;
 }
+
