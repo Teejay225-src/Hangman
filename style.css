@@ -1,4 +1,4 @@
- body {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +12,6 @@ h1 {
     margin: 20px 0;
 }
 
-/* Hangman Container */
 .illustration {
     position: relative;
     width: 400px;
@@ -20,7 +19,6 @@ h1 {
     margin-top: 20px;
 }
 
-/* Gallows */
 .platform {
     position: relative;
     width: 300px;
@@ -64,35 +62,35 @@ h1 {
     left: calc(25% + 150px);
 }
 
-/* Person */
 .person {
     position: absolute;
-    top: 50px; /* same as extension height */
-    left: calc(25% + 150px - 37.5px); /* center the person under the extension */
+    top: 50px;
+    left: calc(25% + 150px - 37.5px);
     width: 75px;
+    height: 250px;
 }
 
-/* Body parts */
 .head {
+    position: relative;
     width: 75px;
     height: 75px;
     border-radius: 50%;
     border: 5px solid black;
     margin: 0 auto;
     display: none;
+    top: 0;
 }
 
 .torso {
+    position: relative;
     width: 5px;
     height: 100px;
     background-color: black;
     margin: 0 auto;
     display: none;
-    position: relative;
     top: 0;
 }
 
-/* Arms */
 .arm {
     width: 60px;
     height: 5px;
@@ -113,7 +111,6 @@ h1 {
     transform: rotate(30deg);
 }
 
-/* Legs */
 .leg {
     width: 60px;
     height: 5px;
@@ -134,7 +131,6 @@ h1 {
     transform: rotate(30deg);
 }
 
-/* Word Display */
 .word {
     display: flex;
     justify-content: center;
@@ -150,13 +146,11 @@ h1 {
     text-align: center;
 }
 
-/* Score Display */
 .score {
     font-size: 25px;
     margin-top: 20px;
 }
 
-/* Input and Button */
 .answer {
     display: flex;
     justify-content: center;
@@ -171,7 +165,8 @@ button {
     cursor: pointer;
 }
 
-/* Ensure hidden parts */
 .head, .torso, .arm, .leg {
     display: none;
 }
+
+
