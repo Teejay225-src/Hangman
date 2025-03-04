@@ -84,28 +84,36 @@ function checkGameStatus() {
 }
 
 // Called when the user clicks the "Enter a letter" button
-function checkLetter() {
-    let letter = prompt("Enter a letter:");
-    if (letter === null) {
-        // User cancelled the prompt
+ function checkLetter() {
+    // 1. Get the letter from the input field instead of using prompt()
+    let letterInput = document.getElementById("letterInput");
+    if (!letterInput) {
+        alert("❗ No input field found in the HTML!");
         return;
     }
-    letter = letter.trim().toLowerCase();
+
+    let letter = letterInput.value.trim().toLowerCase();
+
+    // 2. Clear the input field after reading
+    letterInput.value = "";
+
+    // 3. Validate the letter
     if (letter.length !== 1 || !letter.match(/[a-z]/)) {
         alert("❗ Please enter a valid single letter (a-z).");
         return;
     }
-    // Check if the letter was already guessed
-    if (
-        guessedLetters.indexOf(letter) !== -1
-    ) {
+
+    // 4. Check if the letter was already guessed
+    if (guessedLetters.indexOf(letter) !== -1) {
         alert("🔁 You've already guessed that letter!");
         return;
     }
+
     guessedLetters.push(letter);
 
     let correctGuess = false;
-    // Manually check each position (assuming 5-letter word)
+
+    // 5. Manually check each position (assuming a 5-letter word)
     if (selectedWord[0] === letter) {
         displayedWord[0] = letter;
         correctGuess = true;
@@ -126,11 +134,15 @@ function checkLetter() {
         displayedWord[4] = letter;
         correctGuess = true;
     }
+
+    // 6. If it's a wrong guess, decrement lives & reveal a hangman part
     if (!correctGuess) {
         lives--;
         updateLives();
         revealHangmanPart();
     }
+
+    // 7. Update the displayed word and check if the game is won or lost
     updateWordDisplay();
     checkGameStatus();
 }
