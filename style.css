@@ -1,136 +1,136 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: pink;
-    margin: 0;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: pink;
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .illustration {
-    position: relative;
-    width: 400px;
-    height: 500px;
-    margin-top: 20px;
+  position: relative;
+  width: 400px;
+  height: 500px;
+  margin-top: 20px;
 }
 
 .platform {
-    position: relative;
-    width: 300px;
-    height: 400px;
+  position: relative;
+  width: 300px;
+  height: 400px;
 }
 
 .base {
-    position: absolute;
-    width: 200px;
-    height: 10px;
-    background-color: black;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  width: 200px;
+  height: 10px;
+  background-color: black;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .pole {
-    position: absolute;
-    width: 10px;
-    height: 350px;
-    background-color: black;
-    left: 25%;
-    bottom: 10px;
+  position: absolute;
+  width: 10px;
+  height: 350px;
+  background-color: black;
+  left: 25%;
+  bottom: 10px;
 }
 
 .overhang {
-    position: absolute;
-    width: 150px;
-    height: 10px;
-    background-color: black;
-    top: 0;
-    left: 25%;
+  position: absolute;
+  width: 150px;
+  height: 10px;
+  background-color: black;
+  top: 0;
+  left: 25%;
 }
 
 .extension {
-    position: absolute;
-    width: 10px;
-    height: 50px;
-    background-color: black;
-    top: 0;
-    left: calc(25% + 150px);
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  background-color: black;
+  top: 0;
+  left: calc(25% + 150px);
 }
+
 .person {
-    position: absolute;
-    top: 50px; /* Same as the extension height */
-    left: calc(25% + 150px); /* Same as the extension's left + width */
-    width: 0; /* Set to 0 to centralize everything */
-    height: 250px;
+  position: absolute;
+  top: 50px; /* Same as the extension height */
+  left: calc(25% + 150px); /* Same as the extension's left + width */
+  width: 0; /* Set to 0 to centralize everything */
+  height: 250px;
 }
 
 /* Head */
 .head {
-    position: absolute;
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    border: 5px solid black;
-    top: 0;
-    left: -37.5px; /* Half of the width to center it */
-    display: none;
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 5px solid black;
+  top: 0;
+  left: -37.5px; /* Half of the width to center it */
+  display: none;
 }
 
 /* Torso */
 .torso {
-    position: absolute;
-    width: 5px;
-    height: 100px;
-    background-color: black;
-    top: 75px; /* Right below the head */
-    left: -2.5px; /* Half of width to center it */
-    display: none;
+  position: absolute;
+  width: 5px;
+  height: 100px;
+  background-color: black;
+  top: 75px; /* Right below the head */
+  left: -2.5px; /* Half of width to center it */
+  display: none;
 }
 
 /* Arms */
 .arm {
-    width: 60px;
-    height: 5px;
-    background-color: black;
-    position: absolute;
-    display: none;
+  width: 60px;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+  display: none;
 }
 
 #leftArm {
-    top: 100px; /* Slightly down from top of torso */
-    left: -5px;
-    transform: rotate(-30deg);
+  top: 100px; /* Slightly down from top of torso */
+  left: -5px;
+  transform: rotate(-30deg);
 }
 
 #rightArm {
-    top: 100px;
-    left: 5px;
-    transform: rotate(30deg);
+  top: 100px;
+  left: 5px;
+  transform: rotate(30deg);
 }
 
 /* Legs */
 .leg {
-    width: 60px;
-    height: 5px;
-    background-color: black;
-    position: absolute;
-    display: none;
+  width: 60px;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+  display: none;
 }
 
 #leftLeg {
-    top: 175px; /* Below the torso */
-    left: -5px;
-    transform: rotate(-30deg);
+  top: 175px; /* Below the torso */
+  left: -5px;
+  transform: rotate(-30deg);
 }
 
 #rightLeg {
-    top: 175px;
-    left: 5px;
-    transform: rotate(30deg);
+  top: 175px;
+  left: 5px;
+  transform: rotate(30deg);
 }
-
