@@ -22,116 +22,106 @@ h1 {
 
 /* Gallows */
 .platform {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 300px;
+    height: 400px;
 }
 
-/* Base */
 .base {
     position: absolute;
-    width: 300px;
-    height: 5px;
+    width: 200px;
+    height: 10px;
     background-color: black;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Vertical Pole */
 .pole {
     position: absolute;
-    width: 5px;
+    width: 10px;
     height: 100%;
     background-color: black;
-    bottom: 0;
     left: 25%;
+    bottom: 10px;
 }
 
-/* Top Beam */
 .overhang {
     position: absolute;
-    width: 200px;
-    height: 5px;
+    width: 150px;
+    height: 10px;
     background-color: black;
     top: 0;
     left: 25%;
 }
 
-/* Rope */
 .extension {
     position: absolute;
-    width: 5px;
-    height: 75px;
+    width: 10px;
+    height: 40px;
     background-color: black;
     top: 0;
-    left: calc(25% + 200px);
+    left: calc(25% + 150px);
 }
 
-/* Hangman figure container */
+/* Person */
 .person {
     position: absolute;
-    top: 100px; /* distance from the top */
-    left: calc(50% + 200px); /* adjust depending on gallows width */
-    transform: translateX(0); /* remove centering */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    top: 40px; /* same as extension height */
+    left: calc(25% + 150px - 37.5px); /* center the head under the rope */
+    width: 75px;
 }
 
-
-/* Head */
+/* Body parts */
 .head {
     width: 75px;
     height: 75px;
     border-radius: 50%;
     border: 5px solid black;
-    background-color: transparent;
+    margin: 0 auto;
+    display: none;
 }
 
-/* Torso */
 .torso {
     width: 5px;
-    height: 120px;
+    height: 100px;
     background-color: black;
+    margin: 0 auto;
+    display: none;
+}
+
+.arm, .leg {
+    width: 60px;
+    height: 5px;
+    background-color: black;
+    position: absolute;
+    display: none;
 }
 
 /* Arms */
-.arm {
-    width: 60px;
-    height: 5px;
-    background-color: black;
-    position: absolute;
-    top: 75px; /* relative to .person */
-}
-
 #leftArm {
+    top: 90px;
+    left: -30px;
     transform: rotate(-30deg);
-    left: -60px;
 }
 
 #rightArm {
+    top: 90px;
+    right: -30px;
     transform: rotate(30deg);
-    right: -60px;
 }
 
 /* Legs */
-.foot {
-    width: 60px;
-    height: 5px;
-    background-color: black;
-    position: absolute;
-    top: 195px; /* relative to .person */
-}
-
 #leftLeg {
+    top: 170px;
+    left: -25px;
     transform: rotate(-30deg);
-    left: -40px;
 }
 
 #rightLeg {
+    top: 170px;
+    right: -25px;
     transform: rotate(30deg);
-    right: -40px;
 }
 
 
