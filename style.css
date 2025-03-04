@@ -1,4 +1,4 @@
-body {
+ body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +40,7 @@ h1 {
 .pole {
     position: absolute;
     width: 10px;
-    height: 100%;
+    height: 350px;
     background-color: black;
     left: 25%;
     bottom: 10px;
@@ -58,18 +58,19 @@ h1 {
 .extension {
     position: absolute;
     width: 10px;
-    height: 40px;
+    height: 50px;
     background-color: black;
-    top: 0;
+    top: 10px;
     left: calc(25% + 150px);
 }
 
 /* Person */
 .person {
     position: absolute;
-    top: 40px; /* same as extension height */
-    left: calc(25% + 150px - 37.5px); /* center the head under the rope */
+    top: 60px; /* matches extension height + top offset */
+    left: calc(25% + 150px - 37.5px); /* centers the head under the rope */
     width: 75px;
+    height: 250px;
 }
 
 /* Body parts */
@@ -100,30 +101,29 @@ h1 {
 
 /* Arms */
 #leftArm {
-    top: 90px;
-    left: -30px;
-    transform: rotate(-30deg);
+    top: 100px;
+    left: -55px;
+    transform: rotate(-45deg);
 }
 
 #rightArm {
-    top: 90px;
-    right: -30px;
-    transform: rotate(30deg);
+    top: 100px;
+    right: -55px;
+    transform: rotate(45deg);
 }
 
 /* Legs */
 #leftLeg {
-    top: 170px;
-    left: -25px;
-    transform: rotate(-30deg);
+    top: 190px;
+    left: -45px;
+    transform: rotate(-45deg);
 }
 
 #rightLeg {
-    top: 170px;
-    right: -25px;
-    transform: rotate(30deg);
+    top: 190px;
+    right: -45px;
+    transform: rotate(45deg);
 }
-
 
 /* Word Display */
 .word {
@@ -162,10 +162,7 @@ button {
     cursor: pointer;
 }
 
-/* Hide figure parts */
-.head, .torso, .arm, .foot {
+/* Ensure parts are hidden initially */
+.head, .torso, .arm, .leg {
     display: none;
 }
-
-
- 
