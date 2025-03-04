@@ -76,10 +76,10 @@ function revealHangmanPart() {
 function checkGameStatus() {
     if (displayedWord.join("") === selectedWord) {
         alert("🎉 Congratulations! You guessed the word: " + selectedWord);
-        setupGame();
+        
     } else if (lives <= 0) {
         alert("💀 Game Over! The word was: " + selectedWord);
-        setupGame();
+        
     }
 }
 
